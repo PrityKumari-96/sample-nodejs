@@ -1,0 +1,11 @@
+import { useState } from 'react'
+import type { FormEvent } from 'react'
+import { signup } from '../services/auth'
+import { readableError } from '../utils/formatters'
+import { AuthLayout } from './LoginPage'
+
+export default function SignupPage({ navigate }: { navigate: (path: string) => void }) {
+  const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' }); const [error, setError] = useState(''); const [success, setSuccess] = useState(''); const [busy, setBusy] = useState(false)
+  const submit = async (event: FormEvent) => { event.preventDefault(); setError(''); setSuccess(''); if (!form.name.trim() || !form.email.trim() || !form.password) { setError('Complete all fields.'); return } if (form.password.length < 8) { setError('Password must be at least 8 characters.'); return } if (form.password !== form.confirmPassword) { setError('Passwords do not match.'); return } setBusy(true); try { await signup(form); setSuccess('Account created. You can now sign in.'); setTimeout(() => navigate('/login'), 700) } catch (e) { setError(readableError(e)) } finally { setBusy(false) } }
+  return <AuthLayout eyebrow="New salesperson" title="Create your account" subtitle="Set up access to the HeroCycle pricing engine."><form className="auth-form" onSubmit={submit}><label>Full name<input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} autoComplete="name" required /></label><label>Email address<input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" required /></label><label>Password<input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} autoComplete="new-password" minLength={8} required /></label><label>Confirm password<input type="password" value={form.confirmPassword} onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })} autoComplete="new-password" required /></label>{error && <div className="inline-error">{error}</div>}{success && <div className="notice success">{success}</div>}<button className="primary auth-submit" disabled={busy}>{busy ? 'Creating account...' : 'Create account'}</button></form><p className="auth-switch">Already registered? <button onClick={() => navigate('/login')}>Sign in</button></p></AuthLayout>
+}

@@ -1,0 +1,9 @@
+{
+  "name": "sample-nodejs-frontend-root",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "start": "node frontend/server.js"
+  }
+}

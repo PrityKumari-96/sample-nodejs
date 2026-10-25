@@ -1,0 +1,15 @@
+# Databricks Asset Bundle (DAB) Configuration for Frontend App
+bundle:
+  name: sample_frontend_app
+
+targets:
+  dev:
+    default: true
+    mode: development
+
+resources:
+  apps:
+    sample_frontend_app:
+      name: "sample-frontend-app"
+      description: "React Vite Frontend App running on Databricks Apps"
+      source_code_path: .

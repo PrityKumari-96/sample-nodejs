@@ -1,0 +1,7 @@
+:root { font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+
+#root { min-height: 100vh; }
+
+body { margin: 0; }
+
+h1,h2,p { margin-top: 0; }

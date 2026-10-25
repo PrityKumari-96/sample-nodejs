@@ -1,0 +1,9 @@
+# Databricks Apps Manifest
+command:
+  - "npm"
+  - "run"
+  - "start"
+
+env:
+  - name: "NODE_ENV"
+    value: "production"

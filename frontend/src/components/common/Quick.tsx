@@ -1,0 +1,1 @@
+export default function Quick({ n, title, text, go }: { n: string; title: string; text: string; go: () => void }) { return <button className="quick" onClick={go}><span>{n}</span><strong>{title}</strong><small>{text} <b>↗</b></small></button> }
