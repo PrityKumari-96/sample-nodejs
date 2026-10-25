@@ -1,4 +1,4 @@
-# Databricks Apps Manifest
+# Databricks Apps Manifest for Frontend
 command:
   - "npm"
   - "run"
@@ -7,3 +7,6 @@ command:
 env:
   - name: "NODE_ENV"
     value: "production"
+  # Set this to your Databricks Backend App URL (e.g., https://sample-nodejs-backend-<workspace-id>.databricksapps.com)
+  - name: "VITE_API_BASE_URL"
+    value: ""
